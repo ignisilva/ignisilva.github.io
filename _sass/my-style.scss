@@ -35,3 +35,70 @@
   width: 6rem; // inlineflex : Inline(Inline Block) 요소와 같은 성향(수평 쌓임)
   margin-left: -1px;
 }
+
+// .nav-btn-bar {
+//   height: 4rem;
+// }
+
+.content .avatar {
+  float: left !important;
+  box-sizing: content-box;
+  border: 1rem solid var(--body-bg);
+  /*transition: : border-color ls ease;*/
+  margin-top: 5px !important;
+  margin-left: 5px !important;
+  width: 140px !important;
+  height: 140px !important;
+}
+
+.author-body-description {
+  margin-left: 200px !important;
+  margin-top: 40px !important;
+}
+
+.content a:not(.btn):not(.no-hover) {
+  text-description-color: rgba(255, 15, 16, 0.5);
+}
+
+.markdown-body > p > a {
+  font-weight: bold !important;
+  color: rgb(3, 102, 214) !important;
+}
+
+.markdown-body ol > li > p > a {
+  font-weight: bold !important;
+  color: rgb(3, 102, 214) !important;
+}
+
+// 사이드바 메뉴
+.spread-btn {
+  right: 15%;
+  position: absolute;
+  padding: 0;
+  padding-top: 2px;
+  border: none;
+  background: none;
+  color: white;
+  cursor: pointer;
+  z-index: 1;
+}
+.menu-wrapper {
+  text-align: left;
+  margin-left: 30%;
+}
+.submenu.menu-wrapper {
+  right: 10%;
+  position: absolute;
+  background-color: rgb(34, 31, 32);
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+  width: 10rem;
+  z-index: 2;
+  ul {
+    margin: 0;
+    padding: 0 1.25rem;
+  }
+}
+.submenu.menu-wrapper.hide {
+  display: none;
+}

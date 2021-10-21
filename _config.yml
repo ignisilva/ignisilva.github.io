@@ -421,3 +421,14 @@ jekyll_compose:
       links:
         - title: Project Link
           url: https://example.com
+
+# tipusearch
+#-----------------------------------------------------------
+tipue_search:
+  include:
+    pages: false
+    collections: []
+  exclude:
+    files: []
+    categories: []
+    tags: []
