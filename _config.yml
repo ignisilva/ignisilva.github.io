@@ -57,11 +57,11 @@ menu:
     url: /test/
   - title: Test2
     url: /test2/
-  - title: SubTopic
-    url: /subtopic/
+  - title: Computer Sience
+    url: /cs/
     submenu:
-      - title: Title1
-        url: /title1/
+      - title: DS&Algo
+        url: /ds-algo/
       - title: Title2
         url: /title2/
 
