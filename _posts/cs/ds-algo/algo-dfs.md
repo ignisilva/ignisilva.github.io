@@ -1,0 +1,169 @@
+---
+layout: post
+title: [Algo] 깊이우선탐색(DFS, Breadth-First-Search)
+description: >
+  DFS에 대해 알아보자
+sitemap: false
+hide_last_modified: true
+categories:
+  - cs
+  - ds-algo
+---
+
+## 깊이우선탐색(DFS, Depth-First-Search) 개념
+
+---
+
+그래프 또는 트리구조에서 사용되는 탐색 알고리즘 중 하나이다.
+
+선택된 노드를 기준으로 **인접한 경로를 우선 탐색**하는 방식이다.
+
+트리를 기준으로 생각한다면,  
+더 이상 자식 노드가 없을때까지 한 쪽 경로를 탐색하고, 거쳐왔던 노드 중 다른 경로를 가진 가장 최근 노드로 돌아가 다시 한 쪽 경로를 선택하여 탐색을 진행하는 방식이다.
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Depth-First-Search.gif/220px-Depth-First-Search.gif" width="200">
+<p>이미지 출처: https://commons.wikimedia.org/wiki/</p>
+
+## 깊이우선탐색(DFS, Depth-First-Search) 동작
+
+---
+
+### DFS 사용 자료구조
+
+- Stack  
+  탐색 예정 노드들을 담는 공간  
+  DFS는 노드가 선입후출(FILO) 방식으로 탐색이 진행되므로 Stack이 사용된다.  
+  Stack대신 재귀함수를 통해 구현하는 방법도 있다.
+
+- Set  
+  탐색이 완료된 노드들을 담는 공간  
+  **그래프일 경우만 사용**
+- Set 부연설명  
+  그래프일 경우, 무한루프에 빠질 위험성이 있다.  
+  (인접한 노드를 무조건 Stack에 넣으면 이미 탐색이 완료된 노드가 다시 Stack에 추가된다.)  
+  이를 방지하기 위해 탐색이 완료된 노드들을 저장할 공간이 필요하다. (List, Set 등)  
+  **노드의 이름 또는 id가 같지 않을때**, Set의 원소 탐색은 O(1)이므로 Set을 사용한다.
+
+### DFS 탐색 순서
+
+- 0 . 시작점 설정 (Stack에 추가 + 그래프일 경우, 탐색 한계 Depth를 설정)
+- 1 . Stack에 남은 노드가 없다면, 탐색 종료
+- 2 . 현재 노드의 인접한 노드 탐색  
+  (그래프의 경우, 탐색시 탐색 완료된 노드인지, 현재 탐색 한계 Depth에 도달했는지 고려 후, Stack에 추가)
+- 3 . 노드 탐색 완료 (Stack에서 제거 + 그래프일 경우, Set에 추가)
+- 4 . 1번으로 돌아감
+
+### DFS 동작 예시
+
+아래는 트리 구조에서의 DFS 예시이다.
+
+<img src="https://www.gatevidyalay.com/wp-content/uploads/2018/07/Level-of-a-Tree-Tree-Terminology.png" width="500">
+<p>이미지 출처: https://www.gatevidyalay.com</p>
+
+> Stack: [A]  
+> Set: []
+
+> Stack: [B, C]  
+> Set: [A]
+
+> Stack: [B, G, H]  
+> Set: [A, C]
+
+> Stack: [B, G]  
+> Set: [A, C, H]
+
+> Stack: [B, K]  
+> Set: [A, C, H, G]
+
+> Stack: [B]  
+> Set: [A, C, H, G, K]
+
+> Stack: [D, E, F]  
+> Set: [A, C, H, G, K, B]
+
+> Stack: [D, E]  
+> Set: [A, C, H, G, K, B, F]
+
+> Stack: [D, I, J]  
+> Set: [A, C, H, G, K, B, F, E]
+
+> Stack: [D, I]  
+> Set: [A, C, H, G, K, B, F, E, J]
+
+> Stack: [D]  
+> Set: [A, C, H, G, K, B, F, E, J, I]
+
+> Stack: []  
+> Set: [A, C, H, G, K, B, F, E, J, I, D]
+
+## 깊이우선탐색(DFS, Depth-First-Search) 활용
+
+---
+
+### 백트래킹
+
+- 백트랙킹이란?  
+  DFS는 **모든 경로를 탐색**하는 반면,  
+  백트래킹은 불필요한 경로를 조기에 차단하여 **일부 경로(유망한 경로)만 탐색** 한다.
+
+  탐색 중인 경로가 문제의 해로 이어질 것 같지 않다면, 하위 노드로의 탐색을 멈춘다.  
+  그리고 다른 경로로 회귀하여 탐색을 재진행한다.  
+  여기서 문제의 해가 될 가능성이 있다면 **유망하다(promising)** 라 표현하며,  
+  유망하지 않는 경로로 진행하지 않는 것을 **가지치기(prunning)** 라 한다.
+
+- 백트래킹의 동작  
+  1 . DFS를 실행  
+  2 . 해당 경로가 유망한지 탐색  
+  3 . 유망하지 않다면 부모 노드로 돌아감  
+  4 . 2번으로 돌아감
+
+- 백트래킹을 활용한 경우의 수 문제
+
+  - 모두 n 개의 item에서 m개를 뽑는 문제
+  - 순열 (nPr)  
+    서로 다른 n개 중에 r개를 선택하는 경우의 수를 의미한다(순서 상관O)  
+    n!/(n-r)!
+
+    > 3개 중 2개  
+    > 1 2  
+    > 1 3  
+    > 2 1  
+    > 2 3  
+    > 3 1  
+    > 3 2
+
+  - 조합 (nCr)  
+    서로 다른 n개 중에 r개를 선택하는 경우의 수를 의미한다(순서 상관X)  
+    n!/(n-r)!r!
+
+    > 3개 중 2개  
+    > 1 2  
+    > 1 3  
+    > 2 3
+
+  - 중복순열 (nπr)  
+    중복 가능한 서로 다른 n개 중에 r개를 선택하는 경우의 수를 의미한다(순서 상관O)  
+    n^r
+
+    > 3개 중 2개  
+    > 1 1  
+    > 1 2  
+    > 1 3
+    > 2 1
+    > 2 2
+    > 2 3
+    > 3 1
+    > 3 2
+    > 3 3
+
+  - 중복조합 (nHr)  
+    중복 가능한 서로 다른 n개 중에 r개를 선택하는 경우의 수를 의미한다(순서 상관X)  
+    (n+r-1)!/(n-1)!r!
+
+    > 3개 중 2개  
+    > 1 1  
+    > 1 2  
+    > 1 3
+    > 2 2
+    > 2 3
+    > 3 3

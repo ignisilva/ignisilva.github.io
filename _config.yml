@@ -30,7 +30,7 @@ description: >
 tagline: 꾸준함을 추구하는 개발 Blog
 
 # A list of keywords for your blog
-keywords: [CS, Algorithm, React, Nodejs, Docker]
+keywords: [CS, React, Nodejs, Docker]
 
 # A (square) logo for your site.
 # If provided, it will be shown at the top of the sidebar.
@@ -51,19 +51,17 @@ menu:
   #   url: /example/
   # - title: Documentation
   #   url: /docs/
-  - title: About
-    url: /about/
-  - title: Test1
-    url: /test/
-  - title: Test2
-    url: /test2/
-  - title: Computer Sience
+  # - title: About
+  #   url: /about/
+  # - title: Test1
+  #   url: /test/
+  # - title: Test2
+  #   url: /test2/
+  - title: CS
     url: /cs/
     submenu:
       - title: DS&Algo
         url: /ds-algo/
-      - title: Title2
-        url: /title2/
 
 # Add links to the footer.
 # Typically you'll want to link to your cookie- or privacy policy (if appliable), etc..

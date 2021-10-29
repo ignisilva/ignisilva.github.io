@@ -1,0 +1,109 @@
+---
+layout: post
+title: [Algo] 너비우선탐색(BFS, Breadth-First-Search)
+description: >
+  BFS에 대해 알아보자
+sitemap: false
+hide_last_modified: true
+categories:
+  - cs
+  - ds-algo
+---
+
+- toc
+  {:toc}
+
+## 너비우선탐색(BFS, Breadth-First-Search) 개념
+
+---
+
+그래프 또는 트리구조에서 사용되는 탐색 알고리즘 중 하나이다.
+
+선택된 노드를 기준으로 **인접한 노드들을 우선 탐색**하는 방식이다.
+
+트리를 기준으로 생각한다면,  
+한 레벨에 있는 모든 노드를 탐색해야 다음 레벨의 노드를 탐색하는 방식이다.
+
+<img src="https://blog.kakaocdn.net/dn/c305k7/btqB5E2hI4r/ea7vFo08tkDYo4c8wkfVok/img.gif" width="200">
+<p>이미지 출처: https://developer-mac.tistory.com/64</p>
+
+## 너비우선탐색(BFS, Breadth-First-Search) 동작
+
+---
+
+### BFS 사용 자료구조
+
+- Queue  
+  탐색 예정 노드들을 담는 공간  
+  BFS는 노드가 선입선출(FIFO) 방식으로 탐색이 진행되므로 Queue가 사용된다
+
+- Set  
+  탐색이 완료된 노드들을 담는 공간  
+  **그래프일 경우만 사용**
+- Set 부연설명  
+  그래프일 경우, 무한루프에 빠질 위험성이 있다.  
+  (인접한 노드를 무조건 Queue에 넣으면 이미 탐색이 완료된 노드가 다시 Queue에 추가된다.)  
+  이를 방지하기 위해 탐색이 완료된 노드들을 저장할 공간이 필요하다. (List, Set 등)  
+  **노드의 이름 또는 id가 같지 않을때**, Set의 원소 탐색은 O(1)이므로 Set을 사용한다.
+
+### BFS 탐색 순서
+
+- 0 . 시작점 설정 (Queue에 추가)
+- 1 . Queue에 남은 노드가 없다면, 탐색 종료
+- 2 . 현재 노드의 인접한 노드 탐색 (Queue에 추가 + 그래프의 경우, 탐색시 탐색 완료된 노드인지 고려)
+- 3 . 노드 탐색 완료 (Queue에서 제거 + 그래프일 경우, Set에 추가)
+- 4 . 1번으로 돌아감
+
+### BFS 동작 예시
+
+아래는 트리 구조에서의 BFS 예시이다.
+
+<img src="https://www.gatevidyalay.com/wp-content/uploads/2018/07/Level-of-a-Tree-Tree-Terminology.png" width="500">
+<p>이미지 출처: https://www.gatevidyalay.com</p>
+
+> Queue: [A]  
+> Set: []
+
+> Queue: [B, C]  
+> Set: [A]
+
+> Queue: [C, D, E, F]  
+> Set: [A, B]
+
+> Queue: [D, E, F, G, H]  
+> Set: [A, B, C]
+
+> Queue: [E, F, G, H]  
+> Set: [A, B, C, D]
+
+> Queue: [F, G, H, I, J]  
+> Set: [A, B, C, D, E]
+
+> Queue: [G, H, I, J]  
+> Set: [A, B, C, D, E, F]
+
+> Queue: [H, I, J, K]  
+> Set: [A, B, C, D, E, F, G]
+
+> Queue: [I, J, K]  
+> Set: [A, B, C, D, E, F, H]
+
+> Queue: [J, K]  
+> Set: [A, B, C, D, E, F, H, I]
+
+> Queue: [K]  
+> Set: [A, B, C, D, E, F, H, I, J]
+
+> Queue: []  
+> Set: [A, B, C, D, E, F, H, I, J, K]
+
+## 너비우선탐색(BFS, Breadth-First-Search) 활용
+
+---
+
+### 가중치가 1인 트리 또는 그래프의 최단 경로(또는 최소 비용) 탐색
+
+- 가중치란?  
+  노드와 노드 사이의 탐색에 요구되는 자원이다.  
+  거리의 최소값을 구하는 문제이면, 가중치는 '거리'이다.  
+  시간의 최소값을구하는 문제이면, 가중치는 '시간'이다.
