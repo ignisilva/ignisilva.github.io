@@ -3,14 +3,13 @@
 layout: list
 
 # The title of the tag's page.
-title: test1
-
+title: DS & Algorithm
 # The name of the tag, used in a post's front matter (e.g. tags: [<slug>]).
-slug: test1
+slug: ds-algo
 
 # (Optional) Write a short (~150 characters) description of this featured tag.
 description: >
-  테스트1 예시
+  Data Structure & Algorithm 정리
 
 # (Optional) You can disable grouping posts by date.
 # no_groups: true

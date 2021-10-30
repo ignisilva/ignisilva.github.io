@@ -7,9 +7,10 @@ author1:
 
   # Used at the bottom of each page and at the top of the `about` layout
   # Markdown enabled, can use multiple paragraphs (enabled by `|`)
-  about: |
-    안녕하세요. javascript를 사랑하는 웹개발자 입니다.
-    Please check my [CV](/assets/CV.pdf) to find out for more about me
+
+  # about: |
+  #   안녕하세요. javascript를 사랑하는 웹개발자 입니다.
+  #   Please check my [CV](/assets/CV.pdf) to find out for more about me
 
   # Open `_data/authors.yml` to edit this text.
   # This photo will be used in the about section

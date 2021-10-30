@@ -57,11 +57,13 @@ menu:
   #   url: /test/
   # - title: Test2
   #   url: /test2/
-  - title: CS
-    url: /cs/
-    submenu:
-      - title: DS&Algo
-        url: /ds-algo/
+  # - title: CS
+  #   url: /cs/
+  #   submenu:
+  #     - title: DS&Algo
+  #       url: /ds-algo/
+  - title: DS&Algo
+    url: /ds-algo/
 
 # Add links to the footer.
 # Typically you'll want to link to your cookie- or privacy policy (if appliable), etc..
